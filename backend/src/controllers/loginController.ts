@@ -12,7 +12,6 @@ const loginUser = async (req: express.Request, res: express.Response) => {
   if (!email || !password) return res.status(400).json({ message: `Incorrect password or email` });
 
   const foundUser = await User.findOne({ email: email }).exec();
- 
 
   if (!foundUser) return res.status(409).json({ message: `Incorrect password or email` });
 
@@ -20,6 +19,8 @@ const loginUser = async (req: express.Request, res: express.Response) => {
 
   if (validPassword) {
     const roles = Object.values(foundUser.roles).filter(Boolean);
+
+    const name = foundUser.name;
 
     const accessToken = jwt.sign(
       {
@@ -59,7 +60,7 @@ const loginUser = async (req: express.Request, res: express.Response) => {
       maxAge: 24 * 60 * 60 * 1000,
     });
 
-    res.status(200).json({ message: "Authorizated", roles, accessToken });
+    res.status(200).json({ message: "Authorizated", roles, accessToken, name });
   } else {
     res.status(400).json({ message: `Incorrect password or email` });
   }

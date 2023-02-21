@@ -47,7 +47,9 @@ export default function SignIn() {
 
       const roles = res?.data?.roles;
 
-      setAuth({ email: email, password: password, accessToken: accessToken, roles: roles });
+      const name = res?.data?.name;
+
+      setAuth({ email: email, password: password, accessToken: accessToken, roles: roles, name: name });
 
       toast.update(id, {
         render: res?.data?.message,

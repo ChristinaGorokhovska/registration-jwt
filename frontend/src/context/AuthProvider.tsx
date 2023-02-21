@@ -5,6 +5,10 @@ export interface Auth {
   password: string;
   accessToken: string;
   roles: Array<number>;
+  name: {
+    firstName: string;
+    lastName: string;
+  };
 }
 
 interface AuthContext {
@@ -17,6 +21,10 @@ export const initialAuthState: Auth = {
   password: "",
   accessToken: "",
   roles: [],
+  name: {
+    firstName: "",
+    lastName: "",
+  },
 };
 
 const initialAuthContextState: AuthContext = {

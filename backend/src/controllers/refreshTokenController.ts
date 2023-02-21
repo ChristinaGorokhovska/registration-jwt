@@ -19,6 +19,7 @@ const refreshToken = async (req: express.Request, res: express.Response) => {
 
     const email = foundUser.email;
     const roles = Object.values(foundUser.roles);
+    const name = foundUser.name;
 
     const accessToken = jwt.sign(
       {
@@ -31,7 +32,7 @@ const refreshToken = async (req: express.Request, res: express.Response) => {
       { expiresIn: "15s" }
     );
 
-    res.status(200).json({ message: "Refreshed", roles, accessToken, email });
+    res.status(200).json({ message: "Refreshed", roles, accessToken, email, name });
   });
 };
 

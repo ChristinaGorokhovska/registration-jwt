@@ -11,6 +11,7 @@ interface IUser {
   email: string;
   password: string;
   roles: Object;
+  factoryId: Schema.Types.ObjectId;
 }
 
 export const UserSchema = new Schema<IUser>({
@@ -23,13 +24,14 @@ export const UserSchema = new Schema<IUser>({
   password: { type: String, required: true },
   birthDate: Date,
   roles: {
-    User: {
+    Owner: {
       type: Number,
       default: 2001,
     },
-    Moderator: Number,
+    Employee: Number,
     Admin: Number,
   },
+  factoryId: { type: Schema.Types.ObjectId, ref: "Factory" },
 });
 
 const User = mongoose.model<IUser>("User", UserSchema);

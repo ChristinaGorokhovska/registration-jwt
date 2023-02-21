@@ -1,11 +1,11 @@
 import React from "react";
 import Header from "../components/Header";
 
-export default function Moderator() {
+export default function Employee() {
   return (
     <>
       <Header />
-      <h5>Moderator</h5>
+      <h5>Employee</h5>
     </>
   );
 }
